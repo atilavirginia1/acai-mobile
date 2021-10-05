@@ -87,30 +87,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Açaí Mobile</Text>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-          placeholder="Nome"
-        />
-
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeTel}
-          value={tel}
-          placeholder="Telefone"
-          keyboardType='numeric'
-        />
-
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeValor}
-          value={valor}
-          placeholder="Valor do pedido"
-          keyboardType='numeric'
-        />
-      </View>
+      <Header 
+        onChangeText={onChangeText} 
+        text={text} 
+        onChangeTel={onChangeTel}
+        tel={tel}
+        onChangeValor={onChangeValor}
+        valor={valor} />
       <HeaderText title={"Acompanhamentos"} />
 
       <ScrollView
