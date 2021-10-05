@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput } from "react-native";
 import { styles } from "./style";
 
-export function Header() {
-    const [text, onChangeText] = useState("");
-    const [tel, onChangeTel] = useState("");
-    const [valor, onChangeValor] = useState("");
+export function Header({onChangeText, text, onChangeTel, tel, onChangeValor, valor}) {
     return (
         <View style={styles.content}>
             <View style={styles.form}>
