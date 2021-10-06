@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Linking } from 'react-native';
-import { StyleSheet, Text, View, Switch, ScrollView, TouchableOpacity, TextInput } from 'react-native';
-import { Header } from '../acai-mobile/src/components/Header';
+import { StyleSheet, Text, 
+         View, Switch, ScrollView, 
+         TouchableOpacity, TextInput } from 'react-native';
 import { HeaderText } from '../acai-mobile/src/components/HeaderText';
-import { Options } from './src/Options';
-export default function App() {
+import * as Animatable from 'react-native-animatable';
 
+const ButtonAnimated = Animatable.createAnimatableComponent(TouchableOpacity);
+
+export default function App() {
+  
+  const buttonRef = useRef(null);
   const [item1, setItem1] = useState(false);
   const [item2, setItem2] = useState(false);
   const [item3, setItem3] = useState(false);
@@ -16,6 +21,7 @@ export default function App() {
   const [item8, setItem8] = useState(false);
   const [item9, setItem9] = useState(false);
   const [item10, setItem10] = useState(false);
+  const [item11, setItem11] = useState(false);
   const [text, onChangeText] = useState("");
   const [tel, onChangeTel] = useState("");
   const [valor, onChangeValor] = useState("");
@@ -31,6 +37,7 @@ export default function App() {
     { id: 8, nome: 'Chocoball' },
     { id: 9, nome: 'Granola' },
     { id: 10, nome: 'Amendoim' },
+    { id: 11, nome: 'Cereja' },
 
   ]);
 
@@ -80,6 +87,7 @@ export default function App() {
     string+= "*- Nome:* " + text + '\n' +
              "*- Tel:* " + tel + '\n' +
              "*- Valor do pedido:* " + valor + '\n' ;
+
 
     Linking.openURL('https://wa.me/5584987092120?text=' + string);
   }
@@ -196,12 +204,25 @@ export default function App() {
           />
         </View>
 
+        <View style={styles.content2}>
+          <Text style={styles.text}>Cereja</Text>
+          <Switch
+            value={item11}
+            onValueChange={(valor) => setItem11(valor)}
+          />
+        </View>
+
       </ScrollView>
 
       <View style={styles.containerBtn}>
-        <TouchableOpacity style={styles.btn} onPress={openPage}>
+        <ButtonAnimated
+          style={styles.btn} 
+          onPress={openPage}
+          duration={2000}
+          animation="bounce"
+        >
           <Text style={styles.txtBtn}>Enviar Pedido</Text>
-        </TouchableOpacity>
+        </ButtonAnimated>
       </View>
 
     </View>
@@ -237,11 +258,12 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#ffefff',
     justifyContent: 'center',
-    margin: 20
+    margin: 20,
+    borderRadius: 9
   },
 
   containerBtn: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   txtBtn: {
